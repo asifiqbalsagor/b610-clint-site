@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="p-4 bg-slate-300 dark:text-gray-100">
+    <header className="p-4 bg-slate-200 dark:text-gray-100">
 	<div className="container flex justify-between h-16 mx-auto">
 	
 		<ul className="items-stretch hidden space-x-3 md:flex">
