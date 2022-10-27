@@ -14,6 +14,9 @@ function App() {
       children: [
         {
           path: "/courses",
+          loader: () => {
+            return fetch('http://localhost:5000/allCourse')
+          },
           element:<Courses></Courses>
         },
         {
