@@ -1,7 +1,10 @@
 import React from "react";
+import { useContext } from "react";
 import { Form } from "react-router-dom";
+import {AuthContext} from "../Context/Context"
 
 const Login = () => {
+     const { LoginWithGoogle } = useContext(AuthContext);
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
