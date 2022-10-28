@@ -1,59 +1,70 @@
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
-import React from "react";
-import { useContext } from "react";
-import { Form, Link } from "react-router-dom";
-import { AuthContext } from "../Context/Context.js";
+import React, { useContext, useState } from "react";
+import { Form, Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../Context/Context";
 
 const Login = () => {
-  const { LoginWithGoogle, loginWithGithub, loginUser } = useContext(AuthContext);
-  const googleProvider = new GoogleAuthProvider();
-  const githubProvider = new GithubAuthProvider();
-  const handleLoginGoogle = () => {
-    LoginWithGoogle(googleProvider).then((result) => {
-      const user = result.user;
-      console.log(user);
-    });
-  };
 
-  const handleLoginGithub = () => {
-    loginWithGithub(githubProvider)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-      })
-      .catch((e) => console.error(e));
-  };
-
-  const handleLoginFrom = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const email = form.email.value;
+     const [error, setError] = useState("");
+     const navigate = useNavigate();
+     const location = useLocation();
+     const from = location.state?.from?.pathname || "/";
+     const { loginWithGitHub, loginWithGoogle, loginUser } =
+       useContext(AuthContext);
+     const gitHubProvider = new GithubAuthProvider();
+     const googleProvider = new GoogleAuthProvider();
+     const handleGitHubSignIn = () => {
+       loginWithGitHub(gitHubProvider)
+         .then((result) => {
+           const user = result.user;
+           navigate(from, { replace: true });
+         })
+         .catch((error) => {
+           console.error(error);
+         });
+     };
+   
+     const handleGoogleSignIn = () => {
+       loginWithGoogle(googleProvider)
+         .then((result) => {
+           const user = result.user;
+           navigate(from, { replace: true });
+         })
+         .catch((error) => {
+           console.error(error);
+         });
+     };
+   
+     const handleLogInSubmit = (event) => {
+       event.preventDefault();
+       const form = event.target;
+       const email = form.email.value;
        const password = form.password.value;
-       console.log(email, password);
+   
+       setError("");
+   
        loginUser(email, password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        form.reset();
-       
-      })
-      .catch((error) => {
-        console.error(error);
-        
-      });
-  };
-
+         .then((result) => {
+           const user = result.user;
+           console.log(user);
+           form.reset();
+           navigate(from, { replace: true });
+         })
+         .catch((error) => {
+           console.error(error);
+           setError(error.message);
+         });
+     };
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
-        <Form onSubmit={handleLoginFrom} className="">
+        <Form onSubmit={handleLogInSubmit} className="">
           <div className="card w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
-              <button onClick={handleLoginGithub} className="btn btn-outline">
+              <button  onClick={handleGitHubSignIn} className="btn btn-outline">
                 Login with Github
               </button>
-              <button
-                onClick={handleLoginGoogle}
+              <button onClick={handleGoogleSignIn}
                 className="btn btn-outline btn-primary"
               >
                 Login with Google

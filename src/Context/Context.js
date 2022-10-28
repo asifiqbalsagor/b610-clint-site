@@ -1,38 +1,65 @@
-import { createContext } from "react";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import {
+     createUserWithEmailAndPassword,
+     getAuth,
+     onAuthStateChanged,
+     signInWithEmailAndPassword,
+     signInWithPopup,
+     signOut,
+     updateProfile,
+   } from "firebase/auth";
 import app from "../firebase-config/firebase-config";
-export const AuthContext = createContext();
+   export const AuthContext = createContext();
+   const auth = getAuth(app);
+const Context = ({children}) => {
+  const [user, setUser] = useState({});
 
-
-const auth = getAuth(app);
-const Context = ({ children }) => {
-  const [user, setUser] = useState({ name: "sagor" });
-  const LoginWithGoogle = (provider) => {
-    return signInWithPopup(auth, provider);
-     };
-     
-     const loginWithGithub = (provider) => {
-          return signInWithPopup(auth, provider);
-}
-
-     const createUser = (email, password) => {
-          return createUserWithEmailAndPassword(auth, email, password)
-     }
-     const loginUser = (email, password) => {
-          return signInWithEmailAndPassword(auth, email, password);
-        };
-     const userInfo = {
-          loginUser,
-          loginWithGithub,
-          createUser,
-          user,
-          LoginWithGoogle,
+  const createUser = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
   };
-  return (
-    <div>
-      <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>
-    </div>
+
+  const loginUser = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const loginWithGitHub = (provider) => {
+    return signInWithPopup(auth, provider);
+  };
+
+  const loginWithGoogle = (provider) => {
+    return signInWithPopup(auth, provider);
+  };
+
+  const updateUserProfile = (profile) => {
+    return updateProfile(auth.currentUser, profile);
+  };
+
+  const logOut = () => {
+    return signOut(auth);
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (logInUser) => {
+      setUser(logInUser);
+      console.log("auth change", logInUser);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  const authInfo = {
+    user,
+    loginWithGitHub,
+    loginWithGoogle,
+    createUser,
+    loginUser,
+    logOut,
+    updateUserProfile,
+  };
+     return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 };
 
