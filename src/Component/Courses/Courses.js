@@ -6,12 +6,14 @@ const Courses = () => {
   const courses = useLoaderData();
   return (
     <div>
-      <div class="grid grid-cols-3 gap-4">
-        <div class="...">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur, explicabo! Distinctio dolore labore animi? Ipsa, repellat hic vel nobis vero officia quam ratione natus, at sunt consequatur dicta, excepturi modi.</div>
+      <div class="grid grid-cols-3 gap-4 container mx-auto">
+        <div class="...">06</div>
         <div class="col-span-2 ...">
-          {courses.map((course) => (
-            <ShowCourse key={course.id} course={course}></ShowCourse>
-          ))}
+          <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 mx-6 my-2  gap-4">
+            {courses.map((course) => (
+              <ShowCourse key={course.id} course={course}></ShowCourse>
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ const ShowCourse = ({ course }) => {
     <div>
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
         <figure>
-          <img src={image_url} alt="Shoes" />
+          <img style={{height:"300px"}} src={image_url} alt="Shoes" />
         </figure>
         <div className="card-body">
                       <h1 className="card-title">Title :{ title}</h1>

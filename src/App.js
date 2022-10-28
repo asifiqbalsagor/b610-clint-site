@@ -5,6 +5,7 @@ import Main from './Layout/Main/Main';
 import Courses from './Component/Courses/Courses';
 import FAQ from './Component/FAQ/Faq';
 import Blog from './Component/Blog/Blog';
+import Login from './Login-Register/Login';
 
 function App() {
   const router = createBrowserRouter([
@@ -26,6 +27,10 @@ function App() {
         {
           path: "/blog",
           element:<Blog></Blog>
+        },
+        {
+          path: "/login",
+          element:<Login></Login>
         }
       ]
     }

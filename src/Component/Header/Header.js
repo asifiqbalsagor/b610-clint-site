@@ -16,6 +16,9 @@ const Header = () => {
 			<li className="flex">
 				<Link to="/blog" rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400">Blog</Link>
 			</li>
+			<li className="flex">
+				<Link to="/login" rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400">Login</Link>
+			</li>
 		</ul>
 		<button className="flex justify-end p-4 md:hidden">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
