@@ -10,9 +10,14 @@ const Context = ({ children }) => {
   const [user, setUser] = useState({ name: "sagor" });
   const LoginWithGoogle = (provider) => {
     return signInWithPopup(auth, provider);
-  };
+     };
+     
+     const loginWithGithub = (provider) => {
+          return signInWithPopup(auth, provider);
+}
 
-  const userInfo = {
+     const userInfo = {
+          loginWithGithub,
     user,
     LoginWithGoogle,
   };
