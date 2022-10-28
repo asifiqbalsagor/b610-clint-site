@@ -1,10 +1,11 @@
 import React from "react";
+import { Form } from "react-router-dom";
 
 const Login = () => {
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
-        <div className="">
+        <Form  className="">
           <div className="card w-full max-w-sm shadow-2xl bg-base-100">
                            <div className="card-body">
                                 <button>Login with Google</button>
@@ -14,7 +15,8 @@ const Login = () => {
                   <span className="label-text">Email</span>
                 </label>
                 <input
-                  type="text"
+                                          type="email"
+                                          name="email"
                   placeholder="email"
                   className="input input-bordered"
                 />
@@ -24,7 +26,8 @@ const Login = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="text"
+                                          type="password"
+                                          name="password"
                   placeholder="password"
                   className="input input-bordered"
                 />
@@ -39,7 +42,7 @@ const Login = () => {
               </div>
             </div>
           </div>
-        </div>
+        </Form>
       </div>
     </div>
   );
