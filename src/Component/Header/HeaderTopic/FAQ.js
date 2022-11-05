@@ -10,7 +10,7 @@ const FAQ = () => {
 		<div className="space-y-4">
 			<details className="w-full border rounded-lg">
 				<summary className="px-4  text-lg py-6 focus:outline-none focus-visible:ring-violet-400">What courses are there?</summary>
-				<p className="px-4 py-6 pt-0 ml-4 text-xl -mt-4 dark:text-gray-400">There are six courses.  Each course is structured differently.  Name of the courses are Web Development, Graphics Design, Computer Engineering, Digital Marketing Photography and Blog Writing. </p>
+				<p className="px-4 py-6 pt-0 ml-4 text-xl -mt-4 dark:text-gray-400">There are six courses.  Each course is structured differently.  Name of the courses are Web Development, HTML Course, CSS Course, JavaScript Course , Bootstrap Course, React Course and Node Js Course . </p>
 			</details>
 			<details className="w-full border rounded-lg">
 				<summary className="px-4 py-6 text-lg focus:outline-none focus-visible:ring-violet-400">Do you need to login to access the courses?</summary>
